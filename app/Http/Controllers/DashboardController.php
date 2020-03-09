@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function index(){
-        return view('backend.dashboard');
+        $pageName = 'Dashboard';
+        return view('backend.dashboard', compact('pageName'));
     }
 }
