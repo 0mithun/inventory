@@ -14,7 +14,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $pageName = "Orders";
+        $orders = Order::all();
+
+   
+
+        return view('backend.orders.index', compact('pageName','orders'));
     }
 
     /**

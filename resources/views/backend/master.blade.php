@@ -28,6 +28,6 @@
 
 </div>
 <!-- ./wrapper -->
-    @include('backend.partials.footer')
+    @include('backend.partials.footer')   
 </body>
 </html>

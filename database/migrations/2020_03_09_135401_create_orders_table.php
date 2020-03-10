@@ -15,15 +15,22 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('recipent_id');
+            $table->unsignedBigInteger('customer_id');
             $table->string('order_type');
             $table->string('order_number');
-            $table->unsignedInteger('invoice_amount');
-            $table->unsignedInteger('insurance_value');
+
+            $table->unsignedBigInteger('store_id')->nullable();
+            $table->date('import_date')->nullable();
+            $table->date('ship_date')->nullable();
+            $table->string('source')->nullable();
+            $table->float('fulfillment_cost',8,2)->default(0.0);
+
+            $table->float('invoice_amount',8,2);
+            $table->float('insurance_value',8,2)->default(0.0);
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('quantity');
             $table->unsignedInteger('status');
-            $table->string('level_type');
+            $table->string('label_type');
             $table->string('delivery_method');
             $table->string('ship_option');
             $table->timestamps();
