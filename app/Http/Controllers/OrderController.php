@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Order;
 use Illuminate\Http\Request;
 
+use DB;
 class OrderController extends Controller
 {
     /**
@@ -29,7 +31,11 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $pageName = 'Order Create';
+
+        $users = User::all();
+
+        return view('backend.orders.create', compact('pageName', 'users'));
     }
 
     /**
@@ -40,7 +46,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
@@ -87,4 +93,31 @@ class OrderController extends Controller
     {
         //
     }
+
+
+    public function getUser(Request $request){
+        $data = [];
+
+
+        if($request->has('q')){
+            $search = $request->q;
+            $data = DB::table("users")
+            		->select("id","name")
+            		->where('name','LIKE',"%$search%")
+            		->get();
+        }
+
+
+        return response()->json($data);
+    }
+
+
+    public function getUserById(Request $request){
+        
+        // return $request->all();
+        $user = User::find($request->id);
+
+        return response()->json($user );
+    }
+    
 }

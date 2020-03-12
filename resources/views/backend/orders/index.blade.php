@@ -23,10 +23,13 @@
     <section class="content">
         <div class="row">
           <div class="col-12">
-  
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Orders</h3>
+                <div class="col-md-11" style="float:left">Orders</div>                
+                <div class="col-md-1" style="float:right">
+
+                <a href="{{ route('orders.create') }}" class="btn btn-primary">New Order</a>
+                </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

@@ -14,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::orderBy('id', 'desc')->get();
+
         $pageName = 'Products';
         return view('backend.products.index', compact('pageName','products'));
     }
@@ -37,7 +38,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       auth()->user()->products()->create($request->all());
+
+        session()->flash('succes','Product Add Successfully');
+
+        return redirect()->route('products.index');
+
     }
 
     /**
@@ -71,7 +77,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->all());
+
+        session()->flash('succes','Product Update Successfully');
+
+        return redirect()->route('products.index');
+
     }
 
     /**

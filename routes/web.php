@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/get-all-user','OrderController@getUser');
+
+Route::post('/get-user','OrderController@getUserById');
+
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');

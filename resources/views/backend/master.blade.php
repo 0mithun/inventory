@@ -6,7 +6,15 @@
     <title>{{ config('app.name')  }} | {{ $pageName  }}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     @include('backend.partials.header')
+
+    <style>
+        .noty_theme__mint.noty_type__success{
+          background: green
+        }
+      </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

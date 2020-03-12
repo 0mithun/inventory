@@ -1,4 +1,3 @@
-
 <!-- jQuery -->
 <script
         src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -15,6 +14,16 @@
 
 
 <script src="{{ asset('/assets')  }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+</script>
 
 @yield('footer_script')
 
@@ -37,11 +46,6 @@
 <script src="plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-
-
-
-
-
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script> --}}
 
