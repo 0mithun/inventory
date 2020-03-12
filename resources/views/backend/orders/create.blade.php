@@ -46,12 +46,9 @@
 
                             <div class="form-group">
                                 <label for="order_type" class="">Receipent Name</label>
-                                {{-- <input type="text" name="" id="" class="form-control"> --}}
-                                <select name="receipt_name" id="receipt_name" class="form-control" >
-                                    {{-- <option value="">Select Receipent</option>
-                                    @foreach($users as $user)
-                                        <option value="{{ $user->id }}">{{ $user->name}}</option>
-                                    @endforeach --}}
+                                    <div class="form-group">
+                                        <select name="receipt_name" id="receipt_name" class="form-control" >
+                                    </div>
                                 </select>
                             </div>
 
@@ -119,23 +116,42 @@
                             </div>
 
                         </div>
+
+
                         <div class="card-body">
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>SHIPBOB ID</th>
+                                        <th style="width:20%">SHIPBOB ID</th>
                                         <th>ITEM NAME</th>
-                                        <th>QUANTITY</th>
+                                        <th style="width:30%">QUANTITY</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>13245</td>
-                                        <td>USB Stick</td>
-                                        <td>3</td>
+                                <tbody class="product_list">
+                                    <tr class="single_product">
+                                        <td>
+                                            <h4 id="product_id"></h4>
+                                        </td>
+                                        <td>
+                                            <div class="form-group" style="margin-bottom:0px">
+                                                <select name="product_name" id="product_name"  class="form-cotrol product_name" style="width:100%"></select>
+                                            </div>
+                                                
+                                        </td>
+                                        <td>
+                                            <div class="form-group"  style="margin-bottom:0px">
+                                                <input type="number" name="quantity" id="quantity" value="1" min="1" class="form-control">
+                                            </div>
+                                            
+                                            
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
+                        <br>
+                            {{-- <div class="form-group">
+                                <button class="btn-default btn float-right" type="button" id="add_new_items">Add New</button>
+                            </div> --}}
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
@@ -208,11 +224,56 @@
                 },
                 dataType: 'json',
             });
-        })
-        //var $eventSelect = $("#receipt_name");
+        });
 
-        //$eventSelect.select2();
-        //$eventSelect.on("select2:select", function (e) { console.log("select2:select", e); });
+
+        $('#product_name').select2({
+            placeholder: 'Select a product',
+            ajax: {
+            url: '/get-all-product',
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                results:  $.map(data, function (item) {
+                        return {
+                            text: item.name,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+            }
+
+        });
+
+
+        $('.product_name').change(function(){
+            let product_id = $(this).val();
+
+            $.ajax({
+                type: "POST",
+                url: "/get-product",
+                data: {
+                    id:product_id
+                },
+                success: function(res){
+                        $('#product_id').text(res.id)
+                },
+                dataType: 'json',
+            });
+        });
+
+        // $('#add_new_items').click(function(){
+        //     var content = '<tr>';
+        //         content += '<td><h4 id="product_id"></h4></td>';
+        //         content += '<td><select name="product_name" id="product_name"  class="form-cotrol product_name" style="width:100%"></select></td>';
+        //         content += '<td><input type="number" name="quantity" id="quantity" value="1" min="1" class="form-control"></td>';
+        //         content += '</tr>';
+
+        //     $('.product_list').append(content);
+        // });
         
     });
 
@@ -228,28 +289,52 @@
     //   });
       $('#order_form').validate({
         rules: {
+            receipt_name:{
+                required:true
+            },
           email: {
             required: true,
             email: true,
           },
-          password: {
-            required: true,
-            minlength: 5
+
+          order_type:{
+            required:true
           },
-          terms: {
-            required: true
+          city:{
+            required:true
           },
+          state:{
+            required:true
+          },
+          zip_code:{
+            required:true
+          },
+          phone:{
+            required:true
+          },
+          country:{
+            required:true
+          },
+
+          address:{
+              required:true
+          },
+          product_name:{
+              required:true
+          },
+          quantity:{
+              required:true,
+              min:1
+          }
         },
         messages: {
+            address:{
+                required:"Please enter address"
+            },
           email: {
             required: "Please enter a email address",
             email: "Please enter a vaild email address"
           },
-          password: {
-            required: "Please provide a password",
-            minlength: "Your password must be at least 5 characters long"
-          },
-          terms: "Please accept our terms"
         },
         errorElement: 'span',
         errorPlacement: function (error, element) {
@@ -271,4 +356,9 @@
 @section('header_script')
 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<style>
+.select2-container{
+         width: 100%;
+    }
+</style>
 @endsection

@@ -23,6 +23,38 @@
     <section class="content">
         <div class="row">
           <div class="col-12">
+            <!-- Modal -->
+            <div class="modal fade" id="add_product_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                  <form action="{{ route('products.store') }}" method="POST" id="add_product_form">
+                      @csrf
+                        <input type="hidden" name="platform" value="Manual">
+                        <div class="form-group">
+                          <label for="name">Name</label>
+                              <input type="text" name="name" id="name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label for="sku">SKU</label>
+                              <input type="text" name="sku" id="sku" class="form-control">
+                        </div>
+                        <div class="form-group">                          
+                          <button  class="btn btn-primary" type="submit">Add Product</button>
+
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
                           
             <div class="card">
               <div class="card-header">
@@ -45,7 +77,7 @@
 
                   
 
-                  <button class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#add_product_modal">Add Products</button>
+                  <button class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#add_product_modal ">Add Products</button>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -204,8 +236,11 @@
 @section('footer_script')
     <!-- DataTables -->
 <script src="{{ asset('assets/') }}/plugins/datatables/jquery.dataTables.min.js"></script>
- <script src="{{ asset('assets/') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+<script src="{{ asset('assets/') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+
+ <script src="{{ asset('assets') }}/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="{{ asset('assets') }}/plugins/jquery-validation/additional-methods.min.js"></script>
+
 
 {{-- <script src="{{ asset('assets/') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script> --}}
 {{-- <script src="{{ asset('assets/') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>  --}}
@@ -236,16 +271,40 @@
     });
 
 
+  });
 
-    @if(session()->has('succes'))
-    new Noty({
-        type: 'success',
-        layout: 'topRight',
-        text: "{{ session('succes') }}"
-    }).show();
-
-    @endif
-
+  $(document).ready(function(){
+    $('#add_product_form').validate({
+        rules: {
+          
+          name:{
+              required:true
+          },
+          sku:{
+              required:true
+          },
+        },
+        messages: {
+            address:{
+                required:"Please enter address"
+            },
+          email: {
+            required: "Please enter a email address",
+            email: "Please enter a vaild email address"
+          },
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+        }
+      });
   });
 </script>
 @endsection
@@ -255,7 +314,7 @@
       <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('assets/') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{{ asset('assets/') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+  
 
   <style>
     form{

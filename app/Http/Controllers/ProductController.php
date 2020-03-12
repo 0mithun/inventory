@@ -38,6 +38,11 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'platform'  =>  ['required'],
+            'name'  =>  ['required'],
+            'sku'   =>  ['required']
+        ]);
        auth()->user()->products()->create($request->all());
 
         session()->flash('succes','Product Add Successfully');

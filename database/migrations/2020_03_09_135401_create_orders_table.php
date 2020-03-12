@@ -15,9 +15,19 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('order_type');
-            $table->string('order_number');
+            $table->text('address')->nullable();
+
+
+            $table->string('email')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip_code')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('country')->nullable();
+
+
 
             $table->unsignedBigInteger('store_id')->nullable();
             $table->date('import_date')->nullable();
@@ -25,7 +35,7 @@ class CreateOrdersTable extends Migration
             $table->string('source')->nullable();
             $table->float('fulfillment_cost',8,2)->default(0.0);
 
-            $table->float('invoice_amount',8,2);
+            $table->float('invoice_amount',8,2)->default(0.0);
             $table->float('insurance_value',8,2)->default(0.0);
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('quantity');

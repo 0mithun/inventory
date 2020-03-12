@@ -10,7 +10,9 @@
 
     @include('backend.partials.header')
 
-    <style>
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+      <style>
         .noty_theme__mint.noty_type__success{
           background: green
         }
@@ -36,6 +38,18 @@
 
 </div>
 <!-- ./wrapper -->
-    @include('backend.partials.footer')   
+    @include('backend.partials.footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <script>
+        @if(session()->has('succes'))
+            new Noty({
+                type: 'success',
+                layout: 'topRight',
+                text: "{{ session('succes') }}"
+            }).show();
+    
+        @endif
+            
+    </script>   
 </body>
 </html>

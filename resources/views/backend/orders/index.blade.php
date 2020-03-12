@@ -33,7 +33,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="products_table" class="table table-bordered table-striped">
+                <table id="products_table" class="table table-bordered table-striped table-sm">
                   <thead>
                     <tr>
                       <th> ORDER ID</th>
@@ -55,9 +55,33 @@
                       <td>{{ $order->import_date }}</td>
                       <td>{{ $order->ship_date }}</td>
                       <td>{{ $order->source }}</td>
-                      <td>{{ $order->customer->name }}</td>
-                      <td>{{ $order->fulfilment_cost }}</td>
-                      <td>{{ $order->status }}</td>
+                      <td>{{ $order->user->name }}</td>
+                      <td>
+                        {{ number_format($order->fulfillment_cost, 2) }}
+                      </td>
+                      <td>
+                        @if($order->status == 1)
+                          
+                          <span class="badge badge-primary">Created</span>
+
+                        @elseif($order->status == 2)
+
+                        <span class="badge badge-info">Picked</span>
+                          
+                        @elseif($order->status == 3)
+                        <span class="badge badge-dark">Packed</span>
+                          
+                        @elseif($order->status == 4)
+                          
+                          <span class="badge badge-warning">Labeled</span>
+                          @elseif($order->status == 5)
+
+
+                            
+                          <span class="badge badge-success">Delivered</span>
+                        @endif
+
+                      </td>
                     </tr>
                   @endforeach
                   
@@ -78,6 +102,10 @@
 
 
 @section('footer_script')
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+
     <!-- DataTables -->
 <script src="{{ asset('assets/') }}/plugins/datatables/jquery.dataTables.min.js"></script>
  <script src="{{ asset('assets/') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -86,6 +114,8 @@
 {{-- <script src="{{ asset('assets/') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>  --}}
 
 <!-- page script -->
+
+
 <script>
   $(function () {
     
@@ -102,6 +132,7 @@
         footer: true
     }
     });
+      
   });
 </script>
 @endsection

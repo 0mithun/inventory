@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Order;
+use App\Product;
 use Illuminate\Http\Request;
 
 use DB;
@@ -46,7 +47,50 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        
+        $request->validate([
+                'order_type'    =>  ['required'],
+                'receipt_name'    =>  ['required'],
+                'address'    =>  ['required'],
+                'email'    =>  ['required'],
+                'city'    =>  ['required'],
+                'state'    =>  ['required'],
+                'zip_code'    =>  ['required'],
+                'phone'    =>  ['required'],
+                'country'    =>  ['required'],
+                'product_name'    =>  ['required'],
+                'quantity'    =>  ['required'],
+        ]);
+            $data = [
+                'order_type'    =>  $request->order_type,
+                'receipt_name'    =>  $request->receipt_name,
+                'address'    =>  $request->address,
+                'email'    =>  $request->email,
+                'city'    =>  $request->city,
+                'state'    =>  $request->state,
+                'zip_code'    =>  $request->zip_code,
+                'phone'    =>  $request->phone,
+                'country'    =>  $request->country,
+                'product_id'    =>  $request->product_name,
+                'quantity'    =>  $request->quantity,
+                'status'    =>  1,
+                'label_type'    =>  'ShipBob Labels',
+                'delivery_method'   =>  'Parcel',
+                'ship_option'       =>  'Standard'
+            ];
+        
+            auth()->user()->orders()->create($data);
+
+            // session()->flash('succes', "Order create successfully");
+
+            // return redirect()->route('orders.index');
+
+
+            session()->flash('succes','Order Create Successfully');
+
+            return redirect()->route('orders.index');
+
+        //return $request->all();
     }
 
     /**
@@ -93,7 +137,28 @@ class OrderController extends Controller
     {
         //
     }
+    public function getProduct(Request $request){
+        $data = [];
 
+
+        if($request->has('q')){
+            $search = $request->q;
+            $data = DB::table("products")
+            		->select("id","name")
+            		->where('name','LIKE',"%$search%")
+            		->get();
+        }
+
+
+        return response()->json($data);
+    }
+
+    public function getProductById(Request $request){
+         // return $request->all();
+         $product = Product::find($request->id);
+
+         return response()->json($product );
+    }
 
     public function getUser(Request $request){
         $data = [];
