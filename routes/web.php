@@ -31,4 +31,5 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/dashboard','DashboardController@index')->name('dashboard');
     Route::resource('products','ProductController');
     Route::resource('orders','OrderController');
+    Route::get('/send-to-inventory','ProductController@sentToInventory')->name('sent.inventory');
 });

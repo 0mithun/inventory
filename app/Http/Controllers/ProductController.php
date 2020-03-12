@@ -100,4 +100,10 @@ class ProductController extends Controller
     {
         //
     }
+
+
+    public function sentToInventory(){
+        $pageName = 'Sent To Inventory';
+        return view('backend.products.senttoinventory', compact('pageName'));
+    }
 }
