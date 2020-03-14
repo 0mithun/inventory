@@ -19,7 +19,7 @@
       </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+<div class="wrapper" id="app">
 
     @include('backend.partials.navbar')
     @include('backend.partials.sidebar')
@@ -50,6 +50,7 @@
     
         @endif
             
-    </script>   
+    </script>
+      <script src="{{ asset('js/app.js') }}"></script
 </body>
 </html>
