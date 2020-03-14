@@ -109,28 +109,28 @@
     // });
 
 
-    $('input[type=radio][name=shipping_type]').change(function() {
-      if (this.value == 'parcel') {
+    // $('input[type=radio][name=shipping_type]').change(function() {
+    //   if (this.value == 'parcel') {
           
-          $('.less_than_truckload_radio').css('display','none');
-          $('.floor_loaded_container_radio').css('display','none');
-          $('.parcel_radio').css('display','block');
-          // less_than_truckload_radio
-          // floor_loaded_container_radio
-      }
-      else if (this.value == 'less_than_truckload') {
-          $('.parcel_radio').css('display','none');
+    //       $('.less_than_truckload_radio').css('display','none');
+    //       $('.floor_loaded_container_radio').css('display','none');
+    //       $('.parcel_radio').css('display','block');
+    //       // less_than_truckload_radio
+    //       // floor_loaded_container_radio
+    //   }
+    //   else if (this.value == 'less_than_truckload') {
+    //       $('.parcel_radio').css('display','none');
           
-          $('.floor_loaded_container_radio').css('display','none');
-          $('.less_than_truckload_radio').css('display','block');
-      }
+    //       $('.floor_loaded_container_radio').css('display','none');
+    //       $('.less_than_truckload_radio').css('display','block');
+    //   }
 
-      else if (this.value == 'floor_loaded_container') {
-          $('.parcel_radio').css('display','none');
-          $('.less_than_truckload_radio').css('display','none');
-          $('.floor_loaded_container_radio').css('display','block');
-      }
-    });
+    //   else if (this.value == 'floor_loaded_container') {
+    //       $('.parcel_radio').css('display','none');
+    //       $('.less_than_truckload_radio').css('display','none');
+    //       $('.floor_loaded_container_radio').css('display','block');
+    //   }
+    // });
 
   });
 </script>

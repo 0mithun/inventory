@@ -106,4 +106,8 @@ class ProductController extends Controller
         $pageName = 'Sent To Inventory';
         return view('backend.products.senttoinventory', compact('pageName'));
     }
+
+    public function productSentInventory(Request $request){
+        return $request->all();
+    }
 }

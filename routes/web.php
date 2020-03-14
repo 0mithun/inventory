@@ -32,4 +32,6 @@ Route::middleware(['auth'])->group(function (){
     Route::resource('products','ProductController');
     Route::resource('orders','OrderController');
     Route::get('/send-to-inventory','ProductController@sentToInventory')->name('sent.inventory');
+
+    Route::post('/inventory/submit-order','ProductController@productSentInventory');
 });
