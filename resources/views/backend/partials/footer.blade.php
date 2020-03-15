@@ -4,7 +4,7 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="{{ asset('/assets')  }}/plugins/jquery-ui/jquery-ui.min.js"></script>
+{{-- <script src="{{ asset('/plugins')  }}/jquery-ui/jquery-ui.min.js"></script> --}}
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
@@ -13,7 +13,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 
-<script src="{{ asset('/assets')  }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+{{-- <script src="{{ asset('/plugins')  }}/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
 
 <script>
 
@@ -53,7 +53,7 @@ $.ajaxSetup({
 <!-- AdminLTE App -->
 <script src="{{ asset('/assets')  }}/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('/assets')  }}/js/pages/dashboard.js"></script>
+{{-- <script src="{{ asset('/assets')  }}/js/pages/dashboard.js"></script> --}}
 @yield('footer_script')
 
 

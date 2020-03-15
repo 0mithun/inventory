@@ -5,7 +5,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <div class="content-header">
+        {{-- <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
@@ -15,7 +15,7 @@
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
-        <!-- /.content-header -->
+        <!-- /.content-header --> --}}
 
         <!-- Main content -->
         
@@ -58,7 +58,14 @@
                           
             <div class="card">
               <div class="card-header">
-                <div class="col-md-11" style="float:left">Products</div>                
+                <div class="col-md-11" style="float:left">
+
+                  <h3>
+                    Products
+                  </h3>
+                  
+
+                </div>                
                 <div class="col-md-1" style="float:right">
                   <!-- Small button groups (default and split) -->
                   {{-- <div class="btn-group dropleft">
@@ -235,15 +242,15 @@
 
 @section('footer_script')
     <!-- DataTables -->
-<script src="{{ asset('assets/') }}/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="{{ asset('assets/') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{ asset('plugins/') }}/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('plugins/') }}/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 
- <script src="{{ asset('assets') }}/plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="{{ asset('assets') }}/plugins/jquery-validation/additional-methods.min.js"></script>
+ <script src="{{ asset('plugins') }}/jquery-validation/jquery.validate.min.js"></script>
+<script src="{{ asset('plugins') }}/jquery-validation/additional-methods.min.js"></script>
 
 
-<script src="{{ asset('assets/') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="{{ asset('assets/') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script> 
+<script src="{{ asset('plugins/') }}/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('plugins/') }}/datatables-responsive/js/responsive.bootstrap4.min.js"></script> 
 
 <!-- page script -->
 <script>
@@ -312,8 +319,8 @@
 
 @section('header_script')
       <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('assets/') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="{{ asset('assets/') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="{{ asset('plugins/') }}/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="{{ asset('plugins/') }}/datatables-responsive/css/responsive.bootstrap4.min.css">
   
 
   <style>

@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Products</h1>
+                        <h1 class="m-0 text-dark">Send Products to Inventory</h1>
                     </div><!-- /.col -->
 
                 </div><!-- /.row -->
@@ -28,8 +28,7 @@
               
               <!-- /.card-header -->
               <div class="card-body">
-                  <send-inventory></send-inventory>
-                    
+                  <send-inventory></send-inventory>                    
               </div>
               <!-- /.card-body -->
             </div>

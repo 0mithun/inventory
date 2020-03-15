@@ -175,8 +175,8 @@
 @section('footer_script')
 
 
-<script src="{{ asset('assets') }}/plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="{{ asset('assets') }}/plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="{{ asset('/plugins') }}/jquery-validation/jquery.validate.min.js"></script>
+<script src="{{ asset('/plugins') }}/jquery-validation/additional-methods.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
@@ -230,7 +230,8 @@
         $('#product_name').select2({
             placeholder: 'Select a product',
             ajax: {
-            url: '/get-all-product',
+            url: '/get-all-product-by-search/',
+            // /get-all-product/'+search
             dataType: 'json',
             delay: 250,
             processResults: function (data) {

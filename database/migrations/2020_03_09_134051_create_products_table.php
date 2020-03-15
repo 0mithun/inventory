@@ -28,6 +28,7 @@ class CreateProductsTable extends Migration
             $table->boolean('digital')->default(0);
             $table->boolean('dangerous')->default(0);
             $table->boolean('lot')->default(1);
+            $table->boolean('send_inventory')->default(0);
             $table->timestamps();
         });
     }

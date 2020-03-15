@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::get('/get-all-user','OrderController@getUser');
 Route::get('/get-all-product/{q}','OrderController@getProduct');
+Route::get('/get-all-product-by-search/','OrderController@getProductbySearch');
 
 Route::post('/get-user','OrderController@getUserById');
 Route::post('/get-product','OrderController@getProductById');

@@ -78,6 +78,10 @@ class InventoryController extends Controller
                     'quantity_per_box'                      =>  $request->quantity_per_box[$i],
                     
                 ]);
+
+                $productInfo->send_inventory = 1;
+                $productInfo->save();
+
                 $i++;
             }
             

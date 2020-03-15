@@ -176,6 +176,24 @@ class OrderController extends Controller
         return response()->json($data);
     }
 
+    public function getProductbySearch(Request $request){
+       
+        $data = [];
+
+        if($request->q){
+            $search = $request->q;
+            $data = DB::table("products")
+                    //->select("id","name")
+                    //->where('user_id', auth()->user()->id)
+                    ->where('send_inventory',1)
+            		->where('name','LIKE',"%$search%")
+            		->get();
+        }
+
+
+        return response()->json($data);
+    }
+
 
     public function getUserById(Request $request){
         
