@@ -14,19 +14,15 @@ class CreateInventoriesTable extends Migration
     public function up()
     {
         Schema::create('inventories', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('product_id');
-
+            $table->id();            
+            
             $table->string('shipping_type');
             $table->string('send_to_location');
-            $table->string('inventory_configure');
-            $table->unsignedInteger('quantity_to_send');
-            $table->unsignedInteger('quantity_of_box');
-            $table->unsignedInteger('quantity_per_box');
+            $table->string('inventory_configure'); 
             $table->date('estimated_date_of_arrival_shipment');
-
             $table->unsignedInteger('status')->default(1);
 
+            
 
             $table->timestamps();
 

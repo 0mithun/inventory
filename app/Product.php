@@ -14,7 +14,7 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function inventory(){
-        return $this->hasMany(Inventory::class);
+    public function inventorydetails(){
+        return $this->hasMany(Inventorydetail::class);
     }
 }

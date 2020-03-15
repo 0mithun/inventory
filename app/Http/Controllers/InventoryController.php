@@ -53,23 +53,30 @@ class InventoryController extends Controller
 
         $inventorys = [];
         $i = 0;
+        //$inventory_id = uniqid('inventory_');
+
+        $inventory = Inventory::create([
+            'shipping_type'                         =>  $request->shipping_type,
+            'send_to_location'                      =>  $request->send_to_location,
+            'inventory_configure'                   =>  $request->inventory_configure,
+            'estimated_date_of_arrival_shipment'    =>  $request->estimated_date_of_arrival_shipment,
+        ]);
         
         foreach($request->products as $product){
             
 
             $productInfo = Product::find($product['id']);
 
-            
+
+
             if($user->id == $productInfo->user_id){
-                $inventorys[] = $productInfo->inventory()->create([
-                    'shipping_type'                         =>  $request->shipping_type,
-                    'send_to_location'                      =>  $request->send_to_location,
-                    'inventory_configure'                   =>  $request->inventory_configure,
-                    'shipping_type'                         =>  $request->shipping_type,
+                $inventorys[] = $inventory->inventorydetails()->create([
+                    'product_id'                            =>  $product['id'],
+                    
                     'quantity_to_send'                      =>  $request->quantity_to_send[$i],
                     'quantity_of_box'                       =>  $request->quantity_of_box[$i],
                     'quantity_per_box'                      =>  $request->quantity_per_box[$i],
-                    'estimated_date_of_arrival_shipment'    =>  $request->estimated_date_of_arrival_shipment,
+                    
                 ]);
                 $i++;
             }
@@ -87,8 +94,14 @@ class InventoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Inventory $inventory)
-    {
-        //
+    {   
+        
+        //$inventories = Inventory::where('inventory_id', $request->inventory_id)->get();
+
+        return response()->json([
+            'inventory' => $inventory,
+            'inventory_details' => $inventory->inventorydetails
+        ]);
     }
 
     /**
@@ -109,9 +122,16 @@ class InventoryController extends Controller
      * @param  \App\Inventory  $inventory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Inventory $inventory)
+    public function update(Request $request)
     {
-        //
+        //return $request->all();
+        $inventory = Inventory::find($request->inventory_id);
+
+        $inventory->status = $request->status;
+        $inventory->save();
+
+        session()->flash('succes','Inventory status update successfully');
+        return redirect()->route('inventory.check');
     }
 
     /**
