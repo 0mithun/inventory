@@ -14,8 +14,11 @@ class InventoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $pageName = 'Check Inventory';
+        $inventories = Inventory::all();
+
+        return view('backend.products.checkinventory', compact('inventories','pageName'));
     }
 
     /**

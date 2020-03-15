@@ -138,18 +138,13 @@ class OrderController extends Controller
         //
     }
     public function getProduct(Request $request){
-        //return 'hello';
-        //return $request->product();
         $data = [];
-
-        // $query = $request->q;
-        // //return $query;
-
 
         if($request->q){
             $search = $request->q;
             $data = DB::table("products")
-            		//->select("id","name")
+                    //->select("id","name")
+                    ->where('user_id', auth()->user()->id)
             		->where('name','LIKE',"%$search%")
             		->get();
         }

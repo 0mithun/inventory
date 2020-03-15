@@ -9,14 +9,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @include('backend.partials.header')
-
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
-      <style>
-        .noty_theme__mint.noty_type__success{
-          background: green
-        }
-      </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+    <style>
+    .noty_theme__mint.noty_type__success{
+        background: green
+    }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper" id="app">
@@ -29,16 +28,13 @@
 
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+        <strong>Copyright &copy; 2014-2019 </strong>
         All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.0.3-pre
-        </div>
     </footer>
 
 </div>
 <!-- ./wrapper -->
-    @include('backend.partials.footer')
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     <script>
         @if(session()->has('succes'))
@@ -48,9 +44,10 @@
                 text: "{{ session('succes') }}"
             }).show();
     
-        @endif
-            
+        @endif            
     </script>
-      <script src="{{ asset('js/app.js') }}"></script
+    @include('backend.partials.footer') 
+
+      
 </body>
 </html>

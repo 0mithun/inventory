@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Route::get('/get-all-user','OrderController@getUser');
@@ -34,4 +34,5 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/send-to-inventory','ProductController@sentToInventory')->name('sent.inventory');
 
     Route::post('/inventory/submit-order','InventoryController@store');
+    Route::get('/check-inventory','InventoryController@index')->name('inventory.check');
 });

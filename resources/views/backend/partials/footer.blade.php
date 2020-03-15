@@ -25,7 +25,7 @@ $.ajaxSetup({
 
 </script>
 
-@yield('footer_script')
+
 
 {{-- 
 <!-- ChartJS -->
@@ -54,3 +54,7 @@ $.ajaxSetup({
 <script src="{{ asset('/assets')  }}/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('/assets')  }}/js/pages/dashboard.js"></script>
+@yield('footer_script')
+
+
+ 
