@@ -2172,10 +2172,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2252,6 +2248,8 @@ __webpack_require__.r(__webpack_exports__);
       }, 0);
     },
     submitOrder: function submitOrder() {
+      var _this2 = this;
+
       axios.post('/inventory/submit-order', {
         products: this.products,
         shipping_type: this.shipping_type,
@@ -2263,7 +2261,21 @@ __webpack_require__.r(__webpack_exports__);
         estimated_date_of_arrival_shipment: this.estimated_date_of_arrival_shipment,
         send_to_location: this.send_to_location
       }).then(function (res) {
-        console.log(res);
+        _this2.products = [];
+        _this2.shipping_type = '';
+        _this2.inventory_configure = '';
+        _this2.shipping_configure = '';
+        _this2.quantity_to_send = [];
+        _this2.quantity_of_box = [];
+        _this2.quantity_per_box = [];
+        _this2.estimated_date_of_arrival_shipment = '';
+        _this2.send_to_location = '';
+        _this2.shipment_configured_error = true;
+        new Noty({
+          type: 'success',
+          layout: 'topRight',
+          text: "Product Send to Inventory Successfully!"
+        }).show();
       });
     },
     showChildOption: function showChildOption() {
@@ -39097,28 +39109,26 @@ var render = function() {
                 }),
                 0
               )
-            ])
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.submitOrder($event)
+                  }
+                }
+              },
+              [_vm._v("Submit Receiving Order")]
+            )
           ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { type: "submit" },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.submitOrder($event)
-              }
-            }
-          },
-          [_vm._v("Submit Receiving Order")]
-        )
-      ])
+        : _vm._e()
     ])
   ])
 }
@@ -51635,14 +51645,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!***************************************************!*\
   !*** ./resources/js/components/SendInventory.vue ***!
   \***************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SendInventory_vue_vue_type_template_id_51b9f74e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SendInventory.vue?vue&type=template&id=51b9f74e&scoped=true& */ "./resources/js/components/SendInventory.vue?vue&type=template&id=51b9f74e&scoped=true&");
 /* harmony import */ var _SendInventory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SendInventory.vue?vue&type=script&lang=js& */ "./resources/js/components/SendInventory.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _SendInventory_vue_vue_type_style_index_0_id_51b9f74e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SendInventory.vue?vue&type=style&index=0&id=51b9f74e&scoped=true&lang=css& */ "./resources/js/components/SendInventory.vue?vue&type=style&index=0&id=51b9f74e&scoped=true&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _SendInventory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _SendInventory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _SendInventory_vue_vue_type_style_index_0_id_51b9f74e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SendInventory.vue?vue&type=style&index=0&id=51b9f74e&scoped=true&lang=css& */ "./resources/js/components/SendInventory.vue?vue&type=style&index=0&id=51b9f74e&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -51674,7 +51685,7 @@ component.options.__file = "resources/js/components/SendInventory.vue"
 /*!****************************************************************************!*\
   !*** ./resources/js/components/SendInventory.vue?vue&type=script&lang=js& ***!
   \****************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -253,12 +253,8 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            
-            <br>
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary" @click.prevent="submitOrder">Submit Receiving Order</button>
+                <br>
+                    <button type="submit" class="btn btn-primary" @click.prevent="submitOrder">Submit Receiving Order</button>
             </div>
 
 
@@ -357,7 +353,23 @@
                     estimated_date_of_arrival_shipment:this.estimated_date_of_arrival_shipment,
                     send_to_location:this.send_to_location
                 }).then(res=>{
-                    console.log(res)
+                    
+                    this.products = [];
+                    this.shipping_type = '';
+                    this.inventory_configure = '';
+                    this.shipping_configure = '';
+                    this.quantity_to_send = [];
+                    this.quantity_of_box = [];
+                    this.quantity_per_box = [];
+                    this.estimated_date_of_arrival_shipment = '';
+                    this.send_to_location = '';
+                    this.shipment_configured_error =true;
+
+                     new Noty({
+                        type: 'success',
+                        layout: 'topRight',
+                        text: "Product Send to Inventory Successfully!"
+                    }).show();
                 })
             },
             showChildOption(){
