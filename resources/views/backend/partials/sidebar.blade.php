@@ -29,7 +29,7 @@
                      with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview  ">
                 <a href="{{ url('/') }}" class="nav-link @if(\Request::route()->getName() ==  'dashboard') active  @endif">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-home"></i>
                         <p>
                             Dashboard
                             {{-- <i class="right fas fa-angle-left"></i> --}}
@@ -54,7 +54,7 @@
 
                 <li class="nav-item has-treeview {{ $open }}">
                 <a href="#" class="nav-link  {{ $class }}">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-grip-horizontal"></i>
                         <p>
                             Orders
                             <i class="right fas fa-angle-left"></i>
@@ -90,7 +90,7 @@
                 <li class="nav-item has-treeview {{ $open }}">
                    
                     <a href="#" class="nav-link {{ $class }}">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-box"></i>
                         <p>
                             Inventory
                             <i class="right fas fa-angle-left"></i>

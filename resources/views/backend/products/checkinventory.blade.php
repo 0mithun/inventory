@@ -57,7 +57,7 @@
                 <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Warehouse Receiving Order #219685</h5>
+                    <h5 class="modal-title inventory_status_title" id="exampleModalLabel" ></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -65,14 +65,21 @@
                     <div class="modal-body">
                         <div class="card">
                             <div class="card-body">
+
                                     <div class="row summary">
                                         <h5>Order Status</h5>
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
                                     </div>
+
+                                    <div class="progress inventory-status">
+                                        {{-- <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div> --}}
+                                    </div>
+
+                                    
+
+                                      <br>
+
+
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h5>Shipping details:
@@ -121,7 +128,10 @@
                                                     
                                                    </tbody>
                                             </table>
-                                        <form action="{{ route('inventory.update.status' ) }}" method="POST">
+
+                                            @if(auth()->user()->is_admin)
+
+                                            <form action="{{ route('inventory.update.status' ) }}" method="POST">
 
                                                 @csrf
                                                 <input type="hidden" name="inventory_id" value="" class="inventory_send_id">
@@ -136,6 +146,7 @@
                                                     <button type="submit" class="btn btn-primary">Save</button>
                                                 </div>
                                             </form>
+                                            @endif
                                         </div>
                                     </div>
                             </div>
@@ -164,18 +175,18 @@
                     <tr>
 
                    
-                        <td>{{ $inventory->id}}</td>
-                        <td>{{ $inventory->created_at->format('m/d/yy')}}</td>
-                        <td>{{ ucwords($inventory->send_to_location) }}</td>
-                        <td>
+                        <td class="text-center">{{ $inventory->id}}</td>
+                        <td class="text-center">{{ $inventory->created_at->format('m/d/yy')}}</td>
+                        <td class="text-center">{{ ucwords($inventory->send_to_location) }}</td>
+                        <td class="text-center">
                             <button class="btn btn-primary" onclick="showInventorySatus({{ $inventory->id }})">
                                 View
                             </button>
                         </td>
-                        <td>
+                        <td class="text-center">
 
                         </td>
-                        <td>  
+                        <td class="text-center">  
                             @if($inventory->status == 1)
                                 <span class="big-badge badge badge-primary">AWAITING ARRIVAL</span>
 
@@ -214,7 +225,7 @@
 <script src="{{ asset('/plugins') }}/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 
  <script src="{{ asset('/plugins') }}/jquery-validation/jquery.validate.min.js"></script>
-<script src="{{ asset('/plugins') }}/plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="{{ asset('/plugins') }}/jquery-validation/additional-methods.min.js"></script>
 
 
 <script src="{{ asset('/plugins') }}/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -237,7 +248,6 @@
 
   });
   function showInventorySatus(inventoryId){
-      console.log(inventoryId)
     $.ajax({
         type: "get",
         url: '/get-inventory/'+inventoryId,
@@ -254,7 +264,6 @@
                 var quantity = 0;
                 var html = '';
                 for(var i = 0; i < inventory_details.length; i++){
-                    console.log(inventory_details[i])
                     quantity += inventory_details[i].quantity_of_box;
 
                     html += '<tr>';
@@ -289,6 +298,36 @@
                     }
                     
                 }
+                var progress  = ''
+                if(inventory.status == 1){
+                    progress = '<div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">AWAITING ARRIVAL</div>';
+                }
+                else if(inventory.status == 2){
+                    progress = '<div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">AWAITING ARRIVAL</div>';
+                    progress += '<div class="progress-bar bg-secondary" role="progressbar" style="width: 20%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">Partially Arrived</div>';
+                }
+                else if(inventory.status == 3){
+                    progress = '<div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">AWAITING ARRIVAL</div>';
+                    progress += '<div class="progress-bar bg-secondary" role="progressbar" style="width: 20%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">Partially Arrived</div>';
+                    progress += '<div class="progress-bar bg-dark" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Arrived</div>';
+                }
+                else if(inventory.status == 4){
+                    progress = '<div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">AWAITING ARRIVAL</div>';
+                    progress += '<div class="progress-bar bg-secondary" role="progressbar" style="width: 20%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">Partially Arrived</div>';
+                    progress += '<div class="progress-bar bg-dark" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Arrived</div>';
+                    progress += '<div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Processing</div>';
+                }
+                else if(inventory.status == 5){
+                    progress = '<div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">AWAITING ARRIVAL</div>';
+                    progress += '<div class="progress-bar bg-secondary" role="progressbar" style="width: 20%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">Partially Arrived</div>';
+                    progress += '<div class="progress-bar bg-dark" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Arrived</div>';
+                    progress += '<div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Processing</div>';
+                    progress += '<div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Received</div>';
+                }
+
+                $('.inventory-status').html(progress)
+
+                $('.inventory_status_title').text('Warehouse Receiving Order #'+inventory.id)
                 $('.inventory_send_id').val(inventory.id)
                 $('#inventory_send_status').html(option);
                 $('#showInventoryStatus').modal();

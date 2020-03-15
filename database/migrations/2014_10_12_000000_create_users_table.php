@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('state')->nullable();
             $table->string('zip_code')->nullable();
             $table->string('country')->nullable();
+            $table->boolean('is_admin')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

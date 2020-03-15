@@ -127,7 +127,10 @@
                       </td>
                       <td>{{ $product->dangerous ? 'YES': 'NO' }}</td>
                       <td>
-                          
+                          @php 
+
+                            $user = auth()->user();
+                          @endphp
                         @if($product->active)
                             <form action="{{ route('products.update', $product->id) }}" method="POST">
                               @csrf 
