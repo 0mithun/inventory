@@ -33,7 +33,7 @@
                                 <div class="card welcome-card">
                                     <div class="card-body welcome-card-body">
                                         <h3 style="color:#3a4b5e">Welcome aboard the 'Ship!</h3>
-                                        <p>On behalf of our entire team, welcome to ShipBob! Our mission is to help e-commerce sellers be more successful online, and we're accomplishing that by providing easy, affordable fulfillment. Please let us know how we can help you!</p>
+                                        <p>On behalf of our entire team, welcome to Babaforwarding! Our mission is to help e-commerce sellers be more successful online, and we're accomplishing that by providing easy, affordable fulfillment. Please let us know how we can help you!</p>
         
                                         Dhruv Saxena <br>
         
@@ -47,7 +47,7 @@
                                 <div class="card price-plan-card">
                                     <div class="card-body price-plan">
                                         <h2 class="text-center">Pricing Plans</h2>
-                                        <p>ShipBob has a number of pricing options for businesses of all sizes. Tell us a little about your business so we can provide the right one for you.
+                                        <p>Babaforwarding has a number of pricing options for businesses of all sizes. Tell us a little about your business so we can provide the right one for you.
 
                                             If you need a custom quote, we'll connect you with our helpful fulfillment specialists right away.</p>
                                     </div>

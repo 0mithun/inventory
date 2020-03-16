@@ -122,7 +122,7 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="width:20%">SHIPBOB ID</th>
+                                        <th style="width:20%">Babaforwarding ID</th>
                                         <th>ITEM NAME</th>
                                         <th style="width:30%">QUANTITY</th>
                                     </tr>

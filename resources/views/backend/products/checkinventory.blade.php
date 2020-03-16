@@ -95,7 +95,7 @@
 
                                             Phone: (844) 474-4726 <br>
 
-                                            Email: support@shipbob.com
+                                            Email: support@Babaforwarding.com
                                             </div>
                                             
                                         </div>
